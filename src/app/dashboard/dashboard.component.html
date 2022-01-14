@@ -1,0 +1,224 @@
+<div class="container-fluid">
+  <!-- <div style="font-family: cursive; font-size: 18px">
+    Hello, Welcome to Angular World!
+  </div> -->
+  <h5 class="titleStyle">{{ title }}</h5>
+  <!-- <div>
+    <label for="name" class="labelStyle">Student Name: </label>
+    <input
+      id="name"
+      [(ngModel)]="student.name"
+      (keyup)="onKeyupValue()"
+      placeholder="Enter name"
+      required
+    />
+    <button
+      type="button"
+      class="btn btn-secondary"
+      style="margin-left: 15px"
+      (click)="onClickAdd()"
+    >
+      {{ buttonName }}
+    </button>
+  </div>
+  <div *ngIf="student.name.length < 1">
+    <small class="errorStyle">Name is required.</small>
+  </div>
+  <div *ngIf="student.name.length > 0 && student.name.length < 3">
+    <small class="errorStyle">Name should be of minimum 3 letters.</small>
+  </div>
+  <div *ngIf="isDetailsVisible" class="labelStyle">
+    {{ student.id }}. {{ student.name }}
+  </div> -->
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="row m-1">
+            <div class="col-10">
+              <h4 class="card-title mb-4">Student Details</h4>
+            </div>
+            <div class="col-2">
+              <div class="tableAddButtonStyle" (click)="addNewStudent()">
+                <p-button label="Add New Student" icon="pi pi-plus"></p-button>
+              </div>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table table-hover table-centered">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Gender</th>
+                  <th>Age</th>
+                  <th>Address</th>
+                  <th>Phone</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of studentDetails">
+                  <td>
+                    {{ data?.ID }}
+                  </td>
+                  <td>{{ data?.firstName }} {{ data?.lastName }}</td>
+                  <td>{{ data?.gender }}</td>
+                  <td>{{ data?.age }}</td>
+                  <td>
+                    {{ data?.address }}
+                  </td>
+                  <td>{{ data?.phoneNumber }}</td>
+                  <td>
+                    <i
+                      class="bi bi-pencil-square"
+                      (click)="onClickEdit(data)"
+                      style="margin-right: 10px"
+                    ></i>
+                    <i
+                      class="bi bi-trash"
+                      (click)="onClickDelete(data)"
+                      style="margin-right: 10px"
+                    ></i>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
+<p-dialog
+  [(visible)]="studentDialog"
+  [style]="{ width: '450px' }"
+  header="Student Details"
+  [modal]="true"
+  styleClass="p-fluid"
+>
+  <ng-template pTemplate="content">
+    <div class="fieldRowClass">
+      <span class="p-float-label" style="width: 100%">
+        <input
+          type="text"
+          pInputText
+          id="float-input"
+          [(ngModel)]="studentModal.firstName"
+          required
+          autofocus
+        />
+        <label for="float-input" class="inputLabelClass">First Name</label>
+      </span>
+      <small class="p-error" *ngIf="submitted && !studentModal.firstName"
+        >First Name is required.</small
+      >
+    </div>
+    <div class="fieldRowClass">
+      <span class="p-float-label" style="width: 100%">
+        <input
+          type="text"
+          pInputText
+          id="float-input"
+          [(ngModel)]="studentModal.lastName"
+          required
+        />
+        <label for="float-input" class="inputLabelClass">Last Name</label>
+      </span>
+      <small class="p-error" *ngIf="submitted && !studentModal.lastName"
+        >Last Name is required.</small
+      >
+    </div>
+
+    <div class="fieldRowClass">
+      <div class="row">
+        <label class="inputLabelClass">Gender</label>
+        <div class="p-field-radiobutton col-4">
+          <p-radioButton
+            id="male"
+            name="category"
+            value="male"
+            [(ngModel)]="studentModal.gender"
+            required
+          ></p-radioButton>
+          <label for="male" style="padding-left: 10px">Male</label>
+        </div>
+        <div class="p-field-radiobutton col-4">
+          <p-radioButton
+            id="female"
+            name="category"
+            value="female"
+            [(ngModel)]="studentModal.gender"
+            required
+          ></p-radioButton>
+          <label for="female" style="padding-left: 10px">Female</label>
+        </div>
+        <small class="p-error" *ngIf="submitted && !studentModal.gender"
+          >Gender is required.</small
+        >
+      </div>
+    </div>
+    <div class="fieldRowClass">
+      <label for="age" class="inputLabelClass">Age</label>
+      <p-inputNumber
+        id="age"
+        [(ngModel)]="studentModal.age"
+        [useGrouping]="false"
+        [maxlength]="3"
+        [min]="0"
+        [max]="100"
+      ></p-inputNumber>
+
+      <small class="p-error" *ngIf="submitted && !studentModal.age"
+        >Age is required.</small
+      >
+    </div>
+    <div class="fieldRowClass">
+      <label for="phone" class="inputLabelClass">Phone Number</label>
+      <p-inputNumber
+        id="phone"
+        [(ngModel)]="studentModal.phoneNumber"
+        [useGrouping]="false"
+        [maxlength]="10"
+      ></p-inputNumber>
+
+      <small class="p-error" *ngIf="submitted && !studentModal.phoneNumber"
+        >Phone Number is required.</small
+      >
+    </div>
+    <div class="fieldRowClass">
+      <label for="address" class="inputLabelClass">Address</label>
+      <textarea
+        id="address"
+        pInputTextarea
+        [(ngModel)]="studentModal.address"
+        required
+        rows="3"
+        cols="20"
+      ></textarea>
+      <small class="p-error" *ngIf="submitted && !studentModal.address"
+        >Address is required.</small
+      >
+    </div>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <button
+      pButton
+      pRipple
+      label="Cancel"
+      icon="pi pi-times"
+      class="p-button-text"
+      (click)="hideDialog()"
+    ></button>
+    <button
+      pButton
+      pRipple
+      label="Save"
+      icon="pi pi-check"
+      class="p-button-text"
+      (click)="saveStudentDetails()"
+    ></button>
+  </ng-template>
+</p-dialog>

@@ -1,0 +1,14 @@
+.navbar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  height: 70px;
+  padding: 0 calc(24px / 2) 0 0;
+
+  background-color: #272d3e;
+}
+.navbar-brand-style {
+  color: #79859c;
+  font-family: "WorkSans-Regular";
+}

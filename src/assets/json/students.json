@@ -1,0 +1,38 @@
+[
+  {
+    "ID": 1,
+    "firstName": "Rajesh",
+    "lastName": "Kumar",
+    "gender": "male",
+    "age": 24,
+    "address": "126 Udhna, Surat, GJ, 394221",
+    "phoneNumber": "7383627627"
+  },
+  {
+    "ID": 2,
+    "firstName": "Rahul",
+    "lastName": "Pawar",
+    "gender": "male",
+    "age": 26,
+    "address": "145 Laxmi Niwas, Pune, MH, 111045",
+    "phoneNumber": "7383627628"
+  },
+  {
+    "ID": 3,
+    "firstName": "Naina",
+    "lastName": "Dixit",
+    "gender": "female",
+    "age": 23,
+    "address": "202 Gods Gift, A wing, Mumbai, MH, 400013",
+    "phoneNumber": "7783627627"
+  },
+  {
+    "ID": 4,
+    "firstName": "Raveena",
+    "lastName": "Jadhav",
+    "gender": "female",
+    "age": 24,
+    "address": "12 Chand Terraces, Mumbai, MH, 400045",
+    "phoneNumber": "7343627627"
+  }
+]
