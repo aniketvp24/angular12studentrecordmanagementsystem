@@ -98,17 +98,7 @@ export class DashboardComponent implements OnInit {
 
   saveStudentDetails() {
     this.submitted = true;
-    console.log(
-      this.studentModal.firstName,
-      this.studentModal.lastName,
-      this.studentModal.gender,
-      this.studentModal.address,
-      this.dashboardService.isEmpty(this.studentModal.firstName),
-      this.dashboardService.isEmpty(this.studentModal.lastName),
-      this.dashboardService.isEmpty(this.studentModal.gender),
-      this.dashboardService.isEmpty(this.studentModal.address),
-      'SAVE'
-    );
+
     if (
       !this.dashboardService.isEmpty(this.studentModal.firstName) &&
       !this.dashboardService.isEmpty(this.studentModal.lastName) &&
